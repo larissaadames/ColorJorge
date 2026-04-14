@@ -1,6 +1,6 @@
 let CSquares = [];
-const linhas = 15;
-const colunas = 15;
+const linhas = 30;
+const colunas = 30;
 const gap = 50;
 
 class Table {
@@ -14,7 +14,7 @@ class Table {
         
         let r = map(i,0,colunas,0,255)
         let g = map(j,0,linhas,0,255)
-        let b = 50
+        let b = 100
         
         // isso aqui cria meio que um "pacote" com as configurações do quadrado
         // que ele acessa dentro do quadrado
