@@ -1,0 +1,60 @@
+.keyword-form {
+  width: min(350px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.keyword-label {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #9ca6c6;
+  letter-spacing: 0.03em;
+}
+
+.keyword-input {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid rgba(180, 193, 230, 0.28);
+  border-radius: 999px;
+  padding: 0 18px;
+  outline: none;
+  background: linear-gradient(180deg, rgba(87, 89, 100, 0.75), rgba(72, 73, 79, 0.85));
+  color: #f6f8ff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.98rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.keyword-input::placeholder {
+  color: rgba(237, 244, 255, 0.5);
+}
+
+.keyword-input:focus {
+  border-color: rgba(32, 209, 225, 0.8);
+  box-shadow: 0 0 0 4px rgba(32, 209, 225, 0.2);
+}
+
+.submit-button {
+  min-height: 46px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(32, 216, 232, 0.98), rgba(12, 180, 201, 0.98));
+  color: #102036;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.submit-button:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.submit-button:active {
+  transform: translateY(1px);
+}

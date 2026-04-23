@@ -1,0 +1,24 @@
+.screen-notice-card {
+  width: min(350px, 100%);
+  padding: 42px 28px;
+  border-radius: 12px;
+  background: rgba(55, 57, 65, 0.94);
+  box-shadow: 0 28px 46px rgba(5, 8, 18, 0.58);
+  text-align: center;
+}
+
+.screen-notice-title {
+  margin: 0 0 14px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  letter-spacing: 0.03em;
+  color: #f7f9ff;
+}
+
+.screen-notice-text {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: #c7d1ee;
+}

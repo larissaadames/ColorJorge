@@ -1,21 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@500;600;700;800&display=swap');
 
-:root {
-  --bg-dark: #13151d;
-  --bg-panel: rgba(55, 57, 65, 0.94);
-  --bg-pill: rgba(58, 61, 72, 0.65);
+.game-screen {
+  --panel-bg: rgba(55, 57, 65, 0.94);
   --text-main: #f2f6ff;
   --text-soft: #9ca6c6;
   --accent: #19d7ea;
-  --accent-strong: #10c6da;
-  --shadow-main: 0 28px 46px rgba(5, 8, 18, 0.58);
-}
 
-* {
-  box-sizing: border-box;
-}
-
-.master-screen {
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -30,7 +20,11 @@
   color: var(--text-main);
 }
 
-.grain-overlay {
+.game-screen * {
+  box-sizing: border-box;
+}
+
+.game-grain-overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -39,7 +33,7 @@
   background-size: 4px 4px;
 }
 
-.brand {
+.game-brand {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -51,7 +45,7 @@
   color: rgba(239, 245, 255, 0.45);
 }
 
-.master-panel {
+.game-panel {
   position: relative;
   z-index: 1;
   width: min(390px, 100%);
@@ -62,7 +56,7 @@
   margin-top: 78px;
 }
 
-.role-nav {
+.game-tab-nav {
   width: min(350px, 100%);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -75,7 +69,7 @@
   backdrop-filter: blur(6px);
 }
 
-.role-tab {
+.game-tab {
   border: 0;
   border-radius: 999px;
   min-height: 54px;
@@ -87,40 +81,41 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  cursor: default;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.role-tab-active {
+.game-tab-active {
   color: #12bfff;
   background: linear-gradient(140deg, rgba(107, 111, 121, 0.6), rgba(72, 73, 80, 0.85));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
-.tab-label {
+.game-tab-label {
   font-family: 'Manrope', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
   line-height: 1;
 }
 
-.tab-icon {
+.game-tab-icon {
   width: 18px;
   height: 18px;
   color: currentColor;
 }
 
-.tab-icon-diamond {
+.game-tab-icon-diamond {
   background: currentColor;
   transform: rotate(45deg);
   border-radius: 4px;
 }
 
-.tab-icon-circle {
+.game-tab-icon-circle {
   border: 2px solid currentColor;
   border-radius: 50%;
 }
 
-.tab-icon-star {
+.game-tab-icon-star {
   background: currentColor;
   clip-path: polygon(
     50% 0%,
@@ -136,102 +131,9 @@
   );
 }
 
-.color-card {
-  width: min(350px, 100%);
-  padding: 44px 24px 34px;
-  border-radius: 12px;
-  background: var(--bg-panel);
-  box-shadow: var(--shadow-main);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 26px;
-}
-
-.color-preview {
-  width: min(210px, 100%);
-  aspect-ratio: 1 / 1;
-  border-radius: 10px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%);
-  box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.12), 0 14px 30px rgba(16, 198, 218, 0.22);
-}
-
-.color-code {
-  margin: 0;
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(1.65rem, 4.6vw, 2rem);
-  letter-spacing: 0.04em;
-  color: #f7f9ff;
-}
-
-.keyword-form {
-  width: min(350px, 100%);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.keyword-label {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
-  font-size: 0.88rem;
-  color: var(--text-soft);
-  letter-spacing: 0.03em;
-}
-
-.keyword-input {
-  width: 100%;
-  min-height: 50px;
-  border: 1px solid rgba(180, 193, 230, 0.28);
-  border-radius: 999px;
-  padding: 0 18px;
-  outline: none;
-  background: linear-gradient(180deg, rgba(87, 89, 100, 0.75), rgba(72, 73, 79, 0.85));
-  color: #f6f8ff;
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.98rem;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.keyword-input::placeholder {
-  color: rgba(237, 244, 255, 0.5);
-}
-
-.keyword-input:focus {
-  border-color: rgba(32, 209, 225, 0.8);
-  box-shadow: 0 0 0 4px rgba(32, 209, 225, 0.2);
-}
-
-.submit-button {
-  min-height: 46px;
-  border: 0;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(32, 216, 232, 0.98), rgba(12, 180, 201, 0.98));
-  color: #102036;
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  cursor: pointer;
-  transition: transform 0.2s ease, filter 0.2s ease;
-}
-
-.submit-button:hover {
-  filter: brightness(1.06);
-  transform: translateY(-1px);
-}
-
-.submit-button:active {
-  transform: translateY(1px);
-}
-
 @media (max-width: 420px) {
-  .master-panel {
+  .game-panel {
     margin-top: 90px;
     gap: 22px;
-  }
-
-  .color-card {
-    padding: 36px 20px 30px;
   }
 }
