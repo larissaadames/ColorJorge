@@ -9,4 +9,6 @@ function ColorCard({ code, color, colorLabel }) {
   );
 }
 
+
 export default ColorCard;
+''

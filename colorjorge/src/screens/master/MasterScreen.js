@@ -7,7 +7,7 @@ function MasterScreen() {
 
   return (
     <GameShell panelLabel="Tela mestre do jogo">
-      <ColorCard code="F 29" color="#19d7ea" colorLabel="Cor sorteada da rodada" />
+      <ColorCard code="F 29" color="#581299" colorLabel="Cor sorteada da rodada" />
       <KeywordForm onSubmit={handleKeywordSubmit} />
     </GameShell>
   );
