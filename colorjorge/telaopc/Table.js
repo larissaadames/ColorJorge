@@ -1,6 +1,6 @@
 let CSquares = [];
-const linhas = 30;
-const colunas = 30;
+const linhas = 50;
+const colunas = 50;
 const gap = 50;
 
 class Table {

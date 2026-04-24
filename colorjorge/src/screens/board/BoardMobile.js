@@ -1,117 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import GameShell from '../../components/game/GameShell';
+import React, { useState } from 'react';
+import Sketch from 'react-p5';
+import { BOARD_CONFIG, getSquareColor } from '../../gameLogic'; // Importa a lógica central
 
 function BoardMobile() {
-  const [colors, setColors] = useState([]);
-  const [selected, setSelected] = useState(null);
-  const rows = 16;
-  const cols = 16;
+  const { linhas, colunas, offset } = BOARD_CONFIG;
+  let CSquares = [];
 
-  // Gera um tabuleiro de cores aleatórias para teste
-  useEffect(() => {
-    const testColors = Array.from({ length: rows * cols }, () => {
-      const h = Math.floor(Math.random() * 360);
-      return `hsl(${h}, 70%, 50%)`;
-    });
-    setColors(testColors);
-  }, []);
-
-  const handleSelect = (index) => {
-    // Cálculo das coordenadas (A-P para colunas, 1-16 para linhas)
-    const colLabel = String.fromCharCode(65 + (index % cols));
-    const rowLabel = Math.floor(index / cols) + 1;
+  const setup = (p5, canvasParentRef) => {
+    const screenWidth = Math.min(p5.windowWidth - 40, 500);
+    p5.createCanvas(screenWidth, screenWidth).parent(canvasParentRef);
     
-    setSelected({
-      index,
-      coord: `${colLabel}${rowLabel}`,
-      color: colors[index]
-    });
+    const gap = (screenWidth - offset) / colunas;
 
-    // Feedback visual no console
-    console.log(`Clicou em: ${colLabel}${rowLabel}`);
+    for (let i = 0; i < colunas; i++) {
+      CSquares[i] = [];
+      for (let j = 0; j < linhas; j++) {
+        const { r, g, b } = getSquareColor(p5, i, j, colunas, linhas);
+        CSquares[i][j] = {
+          x: offset + (i * gap),
+          y: offset + (j * gap),
+          size: gap,
+          r, g, b
+        };
+      }
+    }
+  };
+
+  const draw = (p5) => {
+    p5.background(BOARD_CONFIG.corFundo);
+    const gap = (p5.width - offset) / colunas;
+
+    // Legendas (usando as variáveis do arquivo central)
+    p5.textAlign(p5.CENTER, p5.CENTER);
+    p5.fill(200);
+    for (let i = 0; i < colunas; i++) {
+      p5.text(String.fromCharCode(65 + i), offset + (i * gap) + (gap / 2), offset / 2);
+    }
+    for (let j = 0; j < linhas; j++) {
+      p5.text(j + 1, offset / 2, offset + (j * gap) + (gap / 2));
+    }
+
+    // Desenho dos quadrados
+    for (let i = 0; i < colunas; i++) {
+      for (let j = 0; j < linhas; j++) {
+        const s = CSquares[i][j];
+        p5.fill(s.r, s.g, s.b);
+        p5.noStroke();
+        p5.rect(s.x, s.y, s.size, s.size);
+      }
+    }
+  };
+  const mousePressed = (p5) => {
+    const screenWidth = p5.width;
+    const gap = (screenWidth - offset) / colunas;
+    
+    // Ajustamos a detecção do clique subtraindo o offset
+    let i = Math.floor((p5.mouseX - offset) / gap);
+    let j = Math.floor((p5.mouseY - offset) / gap);
+
+    if (i >= 0 && i < colunas && j >= 0 && j < linhas) {
+      const letra = String.fromCharCode(65 + i);
+      const numero = j + 1;
+      console.log(`Coordenada: ${letra}${numero}`);
+    }
   };
 
   return (
-    <GameShell panelLabel="TESTE DE TABULEIRO">
-      <div style={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        padding: '10px',
-        backgroundColor: '#1a1a1a', // Fundo escuro para destacar as cores
-        minHeight: '80vh'
-      }}>
-        
-        {/* TABULEIRO (GRID) */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${cols}, 1fr)`,
-          gap: '1px',
-          width: '100%',
-          maxWidth: '380px',
-          backgroundColor: '#000',
-          border: '2px solid #333'
-        }}>
-          {colors.map((color, i) => (
-            <div
-              key={i}
-              onClick={() => handleSelect(i)}
-              style={{
-                backgroundColor: color,
-                aspectRatio: '1 / 1',
-                cursor: 'pointer',
-                border: selected?.index === i ? '2px solid white' : 'none',
-                boxSizing: 'border-box'
-              }}
-            />
-          ))}
-        </div>
-
-        {/* ÁREA DE FEEDBACK (ZOOM) */}
-        <div style={{ 
-          marginTop: '20px', 
-          width: '100%', 
-          textAlign: 'center',
-          color: '#fff',
-          fontFamily: 'monospace'
-        }}>
-          {selected ? (
-            <div style={{ 
-              border: '2px solid #555', 
-              padding: '15px', 
-              borderRadius: '8px',
-              backgroundColor: '#222'
-            }}>
-              <p style={{ fontSize: '18px', margin: '0 0 10px 0' }}>
-                SELECIONADO: <span style={{ color: '#0f0' }}>{selected.coord}</span>
-              </p>
-              <div style={{
-                width: '80px',
-                height: '80px',
-                backgroundColor: selected.color,
-                margin: '0 auto',
-                border: '4px solid #fff',
-                boxShadow: '0 0 15px rgba(255,255,255,0.3)'
-              }} />
-              <button 
-                style={{
-                  marginTop: '15px',
-                  padding: '8px 20px',
-                  backgroundColor: '#0f0',
-                  color: '#000',
-                  border: 'none',
-                  fontWeight: 'bold',
-                  cursor: 'pointer'
-                }}
-                onClick={() => alert(`Voto enviado: ${selected.coord}`)}
-              >
-                CONFIRMAR VOTO
-              </button>
-            </div>
-          ) : (
-            <p style={{ color: '#888' }}>Toque em uma cor no tabuleiro</p>
-          )}
-        </div>
+    <GameShell panelLabel="Seleção de Cores">
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '10px' }}>
+        <Sketch setup={setup} draw={draw} mousePressed={mousePressed} />
       </div>
     </GameShell>
   );

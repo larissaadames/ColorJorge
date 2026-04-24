@@ -1,7 +1,7 @@
 let fc = false;
 
 function setup() {
-  createCanvas(1920, 1080);
+  createCanvas(3000, 20000);
   let fc = false;
 }
 
