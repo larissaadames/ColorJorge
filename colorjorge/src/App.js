@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import MasterScreen from './screens/master/MasterScreen';
 import BoardScreen from './screens/board/BoardScreen';
 import ScoreboardScreen from './screens/scoreboard/ScoreboardScreen';
+import BoardMobile from './screens/board/BoardMobile';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/tabuleiro" element={<BoardScreen />} />
         <Route path="/placar" element={<ScoreboardScreen />} />
         <Route path="*" element={<Navigate to="/mestre" replace />} />
+        <Route path="/mobile" element= {<BoardMobile/>}/>
       </Routes>
     </div>
   );
