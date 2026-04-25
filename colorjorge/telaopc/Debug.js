@@ -1,4 +1,4 @@
-
+// CLASSE FEITA PARA CRIAR O CELULAR DO JOGADOR TUDO AQUI NO P5JS
 class Debug {
 
   constructor(id){
@@ -28,7 +28,7 @@ class Debug {
         
         //começa de novo
         this.lastY += this.distancia;
-        this.iniciar()
+        if(gc.turno == 0) this.iniciar()
       });
  
     }

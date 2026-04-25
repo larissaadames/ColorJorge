@@ -2,10 +2,12 @@ class Player{
   
   constructor(id){
     this.id = id;
+    this.nome = null; // nome?
     this.isMaster = false
-    this.squareChosen = null;
-    this.cor = "red" // FAZER LISTA DE CORES
+    this.cor = "red" // FAZER LISTA DE CORES (queria fazer cada jogador ter um identificador colorido)
+    
     this.voto = [];
+    this.podeVotar = true;
     
     
     console.log("jogador ", id, " criado!")
@@ -39,8 +41,7 @@ class Player{
     this.btnSubmit.position(x + d*2 ,y)
     
     this.btnSubmit.mousePressed(() => {
-      this.getVoto();
-      this.submitVoto();
+      this.submitVoto(this.getVoto());
     })
     
     this.btnChoose = createButton("escolher")
@@ -48,15 +49,20 @@ class Player{
     
     
   }
-  
+  // LARI VOCE PROVAVELMENTE vai ter que trocar aqui da onde ele ta pegando o input.
+  // lembra de validar bem o input pra ele só pegar coordenadas validas, eu vou tentar tratar no "back"
+  // mas faça sua parte <3!
   getVoto(){
     this.voto = [this.inputLinha.value(),this.inputColuna.value()]
     return this.voto;
   }
   
-  submitVoto(){
-    gc.setPlayerVoto(this.id,this.voto)
+  submitVoto(voto){
+    gc.setPlayerVoto(this.id,voto)
   }
   
+  setMaster(valor){
+    this.isMaster = valor
+  }
   
 }

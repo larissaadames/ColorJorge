@@ -1,3 +1,5 @@
+// ESSA CLASSE É O TABULEIRO EM SI, A GRID DE ColorSquares
+// CADA QUADRADO É UM OBJETO DA CLASSE ColorSquare
 
 class Table {
   constructor(){
@@ -52,7 +54,7 @@ class Table {
     // percorre todos os quadrados
     for (let i = 0; i < this.colunas; i++) {
       for (let j = 0; j < this.linhas; j++) {
-        
+        // e ve se o x e y ta dentro do quadrado
         let cs = this.CSquares[i][j].checarMatch(x,y)
         
         // tem q checar pra ver se nao é nulo,
@@ -64,6 +66,8 @@ class Table {
       }
     }
   }
+  
+  
   
   getRightX(){
     return this.CSquares[this.colunas-1][0].x + this.CSquares[this.colunas-1][0].size
