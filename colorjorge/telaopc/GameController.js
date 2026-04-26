@@ -17,12 +17,15 @@ class GameController{
     this.qtdPlayers = 0;
     this.minPlayers = 2;
     
+    this.timerVisual = createElement('h1', '');
+    this.timerTexto = '1';
     this.titulo = createElement('h1', 'texto inicial');
-    this.aviso = createElement('h2', ' aviso')
     this.tituloTexto = 'texto inicial';
+    this.aviso = createElement('h2', ' aviso');
     this.avisoTexto = 'aviso';
     
     this.pista = null;
+    this.pistas = new Map();
     
     let dt;
     this.timer = 0;
@@ -36,7 +39,7 @@ class GameController{
   turnoController(){
     
     // muda os textos
-    this.atualizarTextos(this.tituloTexto,this.avisoTexto) // futuramente acho q passa o placar aqui tb
+    this.atualizarTextos(this.timerVisual,this.tituloTexto,this.avisoTexto) // futuramente acho q passa o placar aqui tb
     
     // turno 0 é o prejogo!
     if(this.turno == 0){
@@ -70,11 +73,24 @@ class GameController{
     } else if(this.turno == this.lastTurno){
       // mostra estatísticas gerais do jogo e finaliza
     } else {
+        // secao 0 é master recebe a cor e manda a pista pros jogadores
       if(this.secao == 0){
+        let novaPista = false;
+        const tempoSecao = 30;
         this.tituloTexto = ("O MESTRE ESTÁ PENSANDO NA PISTA...")
-        // master recebe a cor e manda a pista pros jogadores
+        
+        if(novaPista == false && this.timer > 5) {novaPista = true;}
+        if(novaPista){
+          // randomiza a pista e gera, mas por enquanto vou deixar uma fixa só pra ter a ideia da logica principal
+          // da pra fazer um json com chave de cada quadrado e pista, mas acho isso chato e n da pra brincar com diferentes       tamanhos de tabuleiro
+          // o q pensei q é legal é: sortear um quadrado, verificar as cores predominantes, com base nisso fazer um algoritmo
+          // q tem um banco de palavras de acordo com os tons predominantes. fazível.
+          this.pista = "kiwi assado"
+          this.avisoTexto = ("A PISTA É: " + this.pista)
+        }
         // timer, timer quase acaba quando master manda pista
         // secao++
+        
       } else if (this.secao == 1){
         // jogadores votam
         // MAIS DIFICIL -> mostrar voto dos jogadores em tempo real
@@ -105,7 +121,6 @@ class GameController{
   
   
   // acredito que aqui deve ser passada como param alguma info do jogador q a gente pega no cliente dele
-  // dps tem q fazer o randomizador de quem vai ser o mestre
   
   createPlayer(){
     // ainda nao há validacao se o player saiu, nem sei como iremos detectar isso
@@ -141,9 +156,12 @@ class GameController{
     
   }
     
-  atualizarTextos(titulo,aviso){
+  atualizarTextos(timerVisual,titulo,aviso){
+    this.timerVisual.html(timerVisual)
+    this.timerVisual.position(table.getRightX / 2 + 100)
+    console.log(table.getRightX() / 2 + 100)
     this.titulo.html(titulo)
-    this.titulo.position(100 + this.timer,30)
+    this.titulo.position(100,30)
     
     this.aviso.html(aviso)
     this.aviso.position(100, table.getBottomY() + 50)

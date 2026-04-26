@@ -1,4 +1,4 @@
-// CLASSE FEITA PARA CRIAR O CELULAR DO JOGADOR TUDO AQUI NO P5JS
+// CLASSE FEITA PARA CRIAR O CELULADO JOGADOR TUDO AQUI NO P5JS
 class Debug {
 
   constructor(id){
@@ -11,14 +11,14 @@ class Debug {
   }
   
   iniciar(){
-      
+      if(gc.turno != 0) () =>  {this.btnJgdr.remove(); return}
       this.posX = table.getRightX() + this.distancia + this.lastX
       
       this.btnJgdr = createButton("Criar Jogador" + " " + gc.getPlayers().length);
       this.btnJgdr.position(this.posX, this.lastY)
     
       this.btnJgdr.mousePressed(() => {
-        
+        if(gc.turno != 0) return
         // cria o jogador no gc e o debug no jogador
         let player = gc.createPlayer();
         player.criarDebug();
@@ -28,7 +28,7 @@ class Debug {
         
         //começa de novo
         this.lastY += this.distancia;
-        if(gc.turno == 0) this.iniciar()
+        this.iniciar()
       });
  
     }
