@@ -16,7 +16,7 @@ function App() {
         <Route path="/placar" element={<ScoreboardScreen />} />
         <Route path="*" element={<Navigate to="/mestre" replace />} />
         <Route path="/mobile" element= {<BoardMobile/>}/>
-        <Route path='/defesa1' element= {<GamePage/>}></Route>
+        <Route path='/defesa1' element= {<GamePage/>}/>
       </Routes>
     </div>
   );

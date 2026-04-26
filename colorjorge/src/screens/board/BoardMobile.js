@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import Sketch from 'react-p5';
+import React from 'react';
 import ColorBoard from '../../components/game/ColorBoard';
+// import GameShell from '../../components/game/GameShell';
 
-<div>
-    <ColorBoard/>
-</div>
-
+function BoardMobile(){
+  return(<div>
+      <ColorBoard/>
+  </div>)
+}
 export default BoardMobile;
