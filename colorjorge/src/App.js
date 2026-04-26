@@ -4,6 +4,7 @@ import MasterScreen from './screens/master/MasterScreen';
 import BoardScreen from './screens/board/BoardScreen';
 import ScoreboardScreen from './screens/scoreboard/ScoreboardScreen';
 import BoardMobile from './screens/board/BoardMobile';
+import GamePage from './screens/board/GamePage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/placar" element={<ScoreboardScreen />} />
         <Route path="*" element={<Navigate to="/mestre" replace />} />
         <Route path="/mobile" element= {<BoardMobile/>}/>
+        <Route path='/defesa1' element= {<GamePage/>}></Route>
       </Routes>
     </div>
   );
