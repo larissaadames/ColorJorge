@@ -13,12 +13,12 @@ class GameController{
     // PARA NAO DAR PROBLEMA NO ID DOS JOGADORES, NAO REMOVA NINGUEM DA LISTA. APENAS DEIXE NULO SE UM JOGADOR SAIR.
     this.players = []; 
     this.placar = [];
-    this.votos = new Map(); // Map é um objeto que atrela um valor a outro, tipo um hash.
+    this.votos = new Map(); // Map é um objeto que atrela um valor a outro, tipo um hash. usa isso pois linha-coluna
     this.qtdPlayers = 0;
     this.minPlayers = 2;
     
-    this.timerVisual = createElement('h1', '');
-    this.timerTexto = '1';
+    this.timerVisual = createElement('h1', 'aaa');
+    this.timerTexto = '';
     this.titulo = createElement('h1', 'texto inicial');
     this.tituloTexto = 'texto inicial';
     this.aviso = createElement('h2', ' aviso');
@@ -30,6 +30,7 @@ class GameController{
     let dt;
     this.timer = 0;
     this.timerAtivo = false;
+    this.iniciarJogo = false;
   }
   
   // PARECE CONFUSO MAS NAO É!
@@ -39,12 +40,15 @@ class GameController{
   turnoController(){
     
     // muda os textos
-    this.atualizarTextos(this.timerVisual,this.tituloTexto,this.avisoTexto) // futuramente acho q passa o placar aqui tb
+    this.atualizarTextos(this.timerTexto,this.tituloTexto,this.avisoTexto) // futuramente acho q passa o placar aqui tb
     
     // turno 0 é o prejogo!
     if(this.turno == 0){
       const preJogoTempo = 5;
-      const tempoEscolherMaster = 5; // SÃO VARIÁVEIS LOCAIS QUE SÓ SAO USADAS AQUI NAO JULGA O NOME
+      
+      if(this.qtdPlayers < this.minPlayers && this.iniciarJogo) {
+        this.avisoTexto = "São necessários pelo menos " + this.minPlayers + "jogadores para iniciar o jogo"
+      }
       
       let tempoRestante = preJogoTempo - this.timer;
       if(this.qtdPlayers >= this.minPlayers){
@@ -64,6 +68,8 @@ class GameController{
       }
       
       this.tituloTexto = ("FASE Pré-Jogo! " + (preJogoTempo - this.timer).toFixed(0))
+      this.timerTexto = (preJogoTempo - this.timer).toFixed(0)
+        
       // liberar entrada dos jogadores (n faço ideia de como vai fazer isso)
       // colocar contador, ou algo pro 'adm' prosseguir o jogo
       // fechar entrada dos jogadores
@@ -73,25 +79,40 @@ class GameController{
     } else if(this.turno == this.lastTurno){
       // mostra estatísticas gerais do jogo e finaliza
     } else {
-        // secao 0 é master recebe a cor e manda a pista pros jogadores
+        // secao 0 é master, recebe a cor e manda a pista pros jogadores
       if(this.secao == 0){
-        let novaPista = false;
-        const tempoSecao = 30;
-        this.tituloTexto = ("O MESTRE ESTÁ PENSANDO NA PISTA...")
+        const tempoSecao = 5;
+        let temPista = false;
+        let tempoRestante = tempoSecao - this.timer;
         
-        if(novaPista == false && this.timer > 5) {novaPista = true;}
-        if(novaPista){
+        if(!temPista && this.timer <= 5) this.tituloTexto = ("O MESTRE ESTÁ PENSANDO NA PISTA...")
+        
+        if(!temPista && this.timer > 5) {temPista = true;}
+        if(temPista){
+          
           // randomiza a pista e gera, mas por enquanto vou deixar uma fixa só pra ter a ideia da logica principal
-          // da pra fazer um json com chave de cada quadrado e pista, mas acho isso chato e n da pra brincar com diferentes       tamanhos de tabuleiro
+          // da pra fazer um json com chave de cada quadrado e pista, mas acho isso chato e n da pra brincar com diferentes tamanhos de tabuleiro
           // o q pensei q é legal é: sortear um quadrado, verificar as cores predominantes, com base nisso fazer um algoritmo
           // q tem um banco de palavras de acordo com os tons predominantes. fazível.
           this.pista = "kiwi assado"
           this.avisoTexto = ("A PISTA É: " + this.pista)
+          this.tituloTexto = ("A PISTA É: " + this.pista)
         }
-        // timer, timer quase acaba quando master manda pista
-        // secao++
+        
+        if(temPista && this.timer >= tempoSecao){
+          this.timer = 0;
+          this.secao++
+          return
+        }
+        this.timerTexto = (tempoSecao - this.timer).toFixed(0)
+        
         
       } else if (this.secao == 1){
+        let vezDoID = 0
+//         let jaInseriu = [] // lista dos jogadores que ja foram criados inserts 
+        console.log('jogador pegado ' + this.getPlayerById(vezDoID))
+//         jaInseriu.find(p => )
+                       vc.insertVotoJogador(this.getPlayerById(vezDoID))
         // jogadores votam
         // MAIS DIFICIL -> mostrar voto dos jogadores em tempo real
         // timer, timer quase acaba quando jogadores votam
@@ -122,10 +143,10 @@ class GameController{
   
   // acredito que aqui deve ser passada como param alguma info do jogador q a gente pega no cliente dele
   
-  createPlayer(){
+  createPlayer(nome){
     // ainda nao há validacao se o player saiu, nem sei como iremos detectar isso
     let id = this.qtdPlayers
-    let player = new Player(id);
+    let player = new Player(id,nome);
     this.players.push(player);
     this.qtdPlayers = this.players.length;
     
@@ -139,6 +160,10 @@ class GameController{
   getPlayers(){
     return this.players;
   }
+      
+  getPlayerById(id){
+    return this.players.find(p => p.id == id);
+  }
     
   randomizarMaster(){
     let master = random(this.players)
@@ -149,7 +174,9 @@ class GameController{
   update(){
     dt = deltaTime / 1000; // diferenca de tempo entre frames, em segundos
     
-    if(this.qtdPlayers >= this.minPlayers) this.timer = this.timer + dt
+    
+    if(this.qtdPlayers >= this.minPlayers && this.iniciarJogo) this.timer = this.timer + dt
+    
   }
   
   draw(){
@@ -158,8 +185,9 @@ class GameController{
     
   atualizarTextos(timerVisual,titulo,aviso){
     this.timerVisual.html(timerVisual)
-    this.timerVisual.position(table.getRightX / 2 + 100)
-    console.log(table.getRightX() / 2 + 100)
+    this.timerVisual.position(table.getRightX()/2,10)
+    
+    console.log(table.getRightX())
     this.titulo.html(titulo)
     this.titulo.position(100,30)
     

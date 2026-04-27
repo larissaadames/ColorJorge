@@ -1,13 +1,14 @@
 let fc = false;
-const debugAtivo = true;
+const debugAtivo = false;
 
 function setup() {
   createCanvas(1920, 1080);
   
-  gc = new GameController();
+  table = new Table(100,100);
   
-  table = new Table();
-  table.gerar(100,100);
+  gc = new GameController();
+  vc = new ViewController();
+
   
   if(debugAtivo) {
     debug = new Debug();
@@ -24,6 +25,8 @@ function draw() {
   
   gc.turnoController()
   gc.update();
+  
+  vc.draw();
 }
 
 function keyPressed(){

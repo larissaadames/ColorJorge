@@ -2,23 +2,21 @@
 // CADA QUADRADO É UM OBJETO DA CLASSE ColorSquare
 
 class Table {
-  constructor(){
+  constructor(x,y){
     this.CSquares = []
     this.linhas = 10;
     this.colunas = 10;
-    this.gap = 75; // se o this.gap for igual o tamanho do quadrado ele fica grudado
-  }
-  
-  gerar(x,y){
-
-
+    this.gap = 40; // se o this.gap for igual o tamanho do quadrado ele fica grudado
+    this.x = x
+    this.y = y
+    
     for (let i = 0; i < this.colunas; i++) {
       this.CSquares[i] = [];
 
       for (let j = 0; j < this.linhas; j++) {
         
-        let r = map(i,0,this.colunas,100,255)
-        let g = map(j,0,this.linhas,100,255)
+        let r = map(i,0,this.colunas,0,255)
+        let g = map(j,0,this.linhas,0,255)
         let b = 100
         
         // isso aqui cria meio que um "pacote" com as configurações do quadrado
@@ -26,7 +24,7 @@ class Table {
         let cs = new ColorSquare({
           x: i * this.gap + x,
           y: j * this.gap + y,
-          size: 75,
+          size: 40,
           
           r: r, g: g, b: b,
           // cor: j * 10 + i * 10,
@@ -38,6 +36,7 @@ class Table {
       }
     }
   }
+  
 
   draw() {
     for (let i = 0; i < this.colunas; i++) {

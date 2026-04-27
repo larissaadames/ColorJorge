@@ -11,14 +11,16 @@ class Debug {
   }
   
   iniciar(){
-      if(gc.turno != 0) () =>  {this.btnJgdr.remove(); return}
+      if(gc.turno != 0){
+        this.btnJgdr.remove(); 
+        return
+      }
       this.posX = table.getRightX() + this.distancia + this.lastX
       
       this.btnJgdr = createButton("Criar Jogador" + " " + gc.getPlayers().length);
       this.btnJgdr.position(this.posX, this.lastY)
     
       this.btnJgdr.mousePressed(() => {
-        if(gc.turno != 0) return
         // cria o jogador no gc e o debug no jogador
         let player = gc.createPlayer();
         player.criarDebug();
