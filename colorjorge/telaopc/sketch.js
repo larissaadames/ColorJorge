@@ -1,17 +1,32 @@
 let fc = false;
+const debugAtivo = false;
 
 function setup() {
-  createCanvas(3000, 20000);
-  let fc = false;
+  createCanvas(1920, 1080);
+  
+  table = new Table(100,100);
+  
+  gc = new GameController();
+  vc = new ViewController();
+
+  
+  if(debugAtivo) {
+    debug = new Debug();
+    debug.iniciar();
+    }
+
 }
 
 function draw() {
+  dt = deltaTime / 1000;
   background(220);
   
-  table = new Table();
-  
-  table.gerar(50,50);
   table.draw();
+  
+  gc.turnoController()
+  gc.update();
+  
+  vc.draw();
 }
 
 function keyPressed(){
@@ -21,5 +36,9 @@ function keyPressed(){
     fullscreen(fc)
     
   }
+}
+
+function mouseClicked(){
+    table.squareMatch(mouseX,mouseY)
 }
   
