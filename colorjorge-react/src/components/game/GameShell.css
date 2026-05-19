@@ -131,6 +131,24 @@
   );
 }
 
+.btn-criar-perfil {
+  background: transparent;
+  color: var(--accent); 
+  border: 1px solid var(--accent);
+  border-radius: 999px; 
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-criar-perfil:hover {
+  background: var(--accent);
+  color: #14161e; 
+  box-shadow: 0 0 10px rgba(25, 215, 234, 0.4); 
+}
+
 @media (max-width: 420px) {
   .game-panel {
     margin-top: 90px;

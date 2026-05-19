@@ -5,6 +5,7 @@ import BoardScreen from './screens/board/BoardScreen';
 import ScoreboardScreen from './screens/scoreboard/ScoreboardScreen';
 import BoardMobile from './screens/board/BoardMobile';
 import GamePage from './screens/board/GamePage';
+import CreateProfileScreen from './screens/profile/CreateProfileScreen';
 
 function App() {
   return (
@@ -14,9 +15,12 @@ function App() {
         <Route path="/mestre" element={<MasterScreen />} />
         <Route path="/tabuleiro" element={<BoardScreen />} />
         <Route path="/placar" element={<ScoreboardScreen />} />
-        <Route path="*" element={<Navigate to="/mestre" replace />} />
+        <Route path="/criar-perfil" element={<CreateProfileScreen />} />
         <Route path="/mobile" element= {<BoardMobile/>}/>
         <Route path='/defesa1' element= {<GamePage/>}></Route>
+
+
+        <Route path="*" element={<Navigate to="/mestre" replace />} />
       </Routes>
     </div>
   );
