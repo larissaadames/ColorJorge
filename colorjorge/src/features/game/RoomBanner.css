@@ -1,0 +1,14 @@
+.room-banner {
+  width: min(350px, 100%);
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(32, 209, 225, 0.35);
+  background: rgba(32, 209, 225, 0.1);
+  text-align: center;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #19d7ea;
+  letter-spacing: 0.08em;
+}

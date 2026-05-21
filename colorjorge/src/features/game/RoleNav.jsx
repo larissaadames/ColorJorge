@@ -1,12 +1,19 @@
 import { NavLink } from 'react-router-dom';
+import { useRoom } from './useRoom';
 
-const tabs = [
+const masterTabs = [
   { to: '/mestre', label: 'Mestre', iconClass: 'game-tab-icon-diamond' },
-  { to: '/tabuleiro', label: 'Tabuleiro', iconClass: 'game-tab-icon-circle' },
   { to: '/placar', label: 'Placar', iconClass: 'game-tab-icon-star' }
 ];
 
+const playerTabs = [
+  { to: '/tabuleiro', label: 'Tabuleiro', iconClass: 'game-tab-icon-circle' }
+];
+
 function RoleNav() {
+  const { role } = useRoom();
+  const tabs = role === 'player' ? playerTabs : masterTabs;
+
   return (
     <nav className="game-tab-nav" aria-label="Navegacao da tela">
       {tabs.map(tab => (

@@ -1,7 +1,7 @@
 import RoleNav from './RoleNav';
 import './GameShell.css';
 
-function GameShell({ panelLabel, children }) {
+function GameShell({ panelLabel, children, showNav = true }) {
   return (
     <main className="game-screen">
       <div className="game-grain-overlay" aria-hidden="true" />
@@ -9,7 +9,7 @@ function GameShell({ panelLabel, children }) {
       <p className="game-brand">VisaoMaster</p>
 
       <section className="game-panel" aria-label={panelLabel}>
-        <RoleNav />
+        {showNav ? <RoleNav /> : null}
         {children}
       </section>
     </main>

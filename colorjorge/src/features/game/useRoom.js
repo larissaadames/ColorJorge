@@ -1,14 +1,12 @@
 import { useContext } from 'react';
 import { GameContext } from './RoomProvider';
 
-export function useGame() {
+export function useRoom() {
   const context = useContext(GameContext);
 
   if (!context) {
-    throw new Error('useGame must be used inside GameProvider');
+    throw new Error('useRoom must be used inside RoomProvider');
   }
 
   return context;
 }
-
-export { useRoom } from './useRoom';
