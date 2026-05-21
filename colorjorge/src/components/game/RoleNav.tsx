@@ -4,7 +4,7 @@ const tabs = [
   { to: '/mestre', label: 'Mestre', iconClass: 'game-tab-icon-diamond' },
   { to: '/tabuleiro', label: 'Tabuleiro', iconClass: 'game-tab-icon-circle' },
   { to: '/placar', label: 'Placar', iconClass: 'game-tab-icon-star' }
-];
+] as const;
 
 function RoleNav() {
   return (

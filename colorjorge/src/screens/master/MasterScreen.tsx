@@ -3,7 +3,7 @@ import GameShell from '../../components/game/GameShell';
 import KeywordForm from '../../components/game/KeywordForm';
 
 function MasterScreen() {
-  const handleKeywordSubmit = () => {};
+  const handleKeywordSubmit = (_keyword: string) => {};
 
   return (
     <GameShell panelLabel="Tela mestre do jogo">

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["ES2017", "DOM"],
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmitOnError": true,
+    "outDir": "./js",
+    "rootDir": "."
+  },
+  "include": ["ColorSquare.ts", "Table.ts", "sketch.ts"]
+}
