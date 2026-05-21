@@ -1,14 +1,10 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import './KeywordForm.css';
 
-type KeywordFormProps = {
-  onSubmit?: (keyword: string) => void;
-};
-
-function KeywordForm({ onSubmit }: KeywordFormProps) {
+function KeywordForm({ onSubmit }) {
   const [keyword, setKeyword] = useState('');
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = event => {
     event.preventDefault();
 
     const cleanKeyword = keyword.trim();

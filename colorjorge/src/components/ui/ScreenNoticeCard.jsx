@@ -1,11 +1,6 @@
 import './ScreenNoticeCard.css';
 
-type ScreenNoticeCardProps = {
-  title: string;
-  text: string;
-};
-
-function ScreenNoticeCard({ title, text }: ScreenNoticeCardProps) {
+function ScreenNoticeCard({ title, text }) {
   return (
     <article className="screen-notice-card">
       <h1 className="screen-notice-title">{title}</h1>

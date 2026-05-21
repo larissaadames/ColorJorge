@@ -1,13 +1,7 @@
-import type { ReactNode } from 'react';
 import RoleNav from './RoleNav';
 import './GameShell.css';
 
-type GameShellProps = {
-  panelLabel: string;
-  children: ReactNode;
-};
-
-function GameShell({ panelLabel, children }: GameShellProps) {
+function GameShell({ panelLabel, children }) {
   return (
     <main className="game-screen">
       <div className="game-grain-overlay" aria-hidden="true" />

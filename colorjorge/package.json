@@ -16,8 +16,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:telaopc": "tsc -p telaopc/tsconfig.json",
-    "typecheck": "tsc --noEmit",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -38,13 +36,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.9.1",
-    "@types/p5": "^1.7.7",
-    "@types/react": "^19.2.15",
-    "@types/react-dom": "^19.2.3",
-    "typescript": "~4.9.5"
   }
 }

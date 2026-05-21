@@ -1,8 +1,8 @@
 import './App.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import MasterScreen from './screens/master/MasterScreen';
-import BoardScreen from './screens/board/BoardScreen';
-import ScoreboardScreen from './screens/scoreboard/ScoreboardScreen';
+import MasterScreen from './features/master/MasterScreen';
+import BoardScreen from './features/board/BoardScreen';
+import ScoreboardScreen from './features/scoreboard/ScoreboardScreen';
 
 function App() {
   return (

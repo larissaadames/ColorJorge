@@ -1,15 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
+import { GameProvider } from './features/game/GameProvider';
 
 test('renders master game screen shell', () => {
   render(
-    <MemoryRouter
-      initialEntries={['/mestre']}
-      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-    >
-      <App />
-    </MemoryRouter>
+    <GameProvider>
+      <MemoryRouter
+        initialEntries={['/mestre']}
+        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+      >
+        <App />
+      </MemoryRouter>
+    </GameProvider>
   );
 
   expect(screen.getByText(/visaoMaster/i)).toBeInTheDocument();
