@@ -59,7 +59,7 @@
 .game-tab-nav {
   width: min(350px, 100%);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   gap: 8px;
   padding: 8px;
   border-radius: 999px;
