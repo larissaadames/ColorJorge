@@ -41,11 +41,11 @@ function LobbyScreen() {
       <div className="lobby-screen">
         <button 
         className="profile-btn-top-right" 
-        onClick={() => navigate('/perfil')}
+        onClick={() => navigate('/criar-perfil')}
       >
         Criar Perfil
       </button>
-      
+
         <h1 className="lobby-title">ColorJorge</h1>
         <p className="lobby-subtitle">
           Escolha seu papel e entre na mesma sala para jogar em tempo real.
