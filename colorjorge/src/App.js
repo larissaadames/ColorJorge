@@ -5,6 +5,7 @@ import BoardScreen from './features/board/BoardScreen';
 import ScoreboardScreen from './features/scoreboard/ScoreboardScreen';
 import LobbyScreen from './features/lobby/LobbyScreen';
 import RoomRouteGuard from './features/game/RoomRouteGuard';
+import ProfileScreen from './features/profile/CreateProfileScreen';
 
 function App() {
   return (
@@ -18,6 +19,13 @@ function App() {
               <MasterScreen />
             </RoomRouteGuard>
           }
+        />
+        <Route
+          path="/perfil"
+          element={
+              <ProfileScreen />
+          }
+        
         />
         <Route
           path="/tabuleiro"

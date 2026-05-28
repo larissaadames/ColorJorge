@@ -3,6 +3,10 @@ const { WebSocketServer } = require('ws');
 const { MESSAGE_TYPES, parseMessage, send } = require('./protocol');
 const { createRoom, joinRoom, sendTip, sendAnswer, handleDisconnect } = require('./rooms');
 
+// BANCO DE DADOS:
+
+//
+
 const PORT = Number(process.env.PORT) || 8080;
 
 const server = http.createServer((_req, res) => {

@@ -39,6 +39,13 @@ function LobbyScreen() {
   return (
     <GameShell panelLabel="Entrada na sala" showNav={false}>
       <div className="lobby-screen">
+        <button 
+        className="profile-btn-top-right" 
+        onClick={() => navigate('/perfil')}
+      >
+        Criar Perfil
+      </button>
+      
         <h1 className="lobby-title">ColorJorge</h1>
         <p className="lobby-subtitle">
           Escolha seu papel e entre na mesma sala para jogar em tempo real.
