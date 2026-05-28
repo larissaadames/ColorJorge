@@ -6,6 +6,8 @@ import ScoreboardScreen from './features/scoreboard/ScoreboardScreen';
 import LobbyScreen from './features/lobby/LobbyScreen';
 import RoomRouteGuard from './features/game/RoomRouteGuard';
 import ProfileScreen from './features/profile/CreateProfileScreen';
+import Profile from './features/profile/Profile';
+import ProfileCreateScreen from './features/profile/CreateProfileScreen';
 
 function App() {
   return (
@@ -15,32 +17,37 @@ function App() {
         <Route
           path="/mestre"
           element={
-            <RoomRouteGuard requiredRole="master">
+            //<RoomRouteGuard requiredRole="master">
               <MasterScreen />
-            </RoomRouteGuard>
+            //</RoomRouteGuard>
+          }
+        />
+        <Route
+          path="/criar-perfil"
+          element={
+              <ProfileCreateScreen/>
           }
         />
         <Route
           path="/perfil"
-          element={
-              <ProfileScreen />
-          }
-        
+          element ={
+            <Profile/>}
         />
         <Route
           path="/tabuleiro"
           element={
-            <RoomRouteGuard requiredRole="player">
+           // <RoomRouteGuard requiredRole="player">
               <BoardScreen />
-            </RoomRouteGuard>
+           // </RoomRouteGuard>
           }
         />
+
         <Route
           path="/placar"
           element={
-            <RoomRouteGuard requiredRole="master">
+          //  <RoomRouteGuard requiredRole="master">
               <ScoreboardScreen />
-            </RoomRouteGuard>
+            //</RoomRouteGuard>
           }
         />
         <Route path="*" element={<Navigate to="/" replace />} />
