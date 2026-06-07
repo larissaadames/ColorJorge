@@ -5,9 +5,10 @@ import BoardScreen from './features/board/BoardScreen';
 import ScoreboardScreen from './features/scoreboard/ScoreboardScreen';
 import LobbyScreen from './features/lobby/LobbyScreen';
 import RoomRouteGuard from './features/game/RoomRouteGuard';
-import ProfileScreen from './features/profile/CreateProfileScreen';
 import Profile from './features/profile/Profile';
 import ProfileCreateScreen from './features/profile/CreateProfileScreen';
+import BoardMobile from './screens/board/BoardMobile';
+import GamePage from './screens/board/GamePage';
 
 function App() {
   return (
@@ -41,7 +42,6 @@ function App() {
            // </RoomRouteGuard>
           }
         />
-
         <Route
           path="/placar"
           element={
@@ -50,6 +50,8 @@ function App() {
             //</RoomRouteGuard>
           }
         />
+        <Route path="/mobile" element={<BoardMobile />} />
+        <Route path="/defesa1" element={<GamePage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

@@ -2,8 +2,7 @@ let fc = false;
 let table;
 
 function setup() {
-  createCanvas(1920, 1080);
-  fc = false;
+  createCanvas(3000, 20000);
 }
 
 function draw() {
