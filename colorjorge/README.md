@@ -16,6 +16,7 @@ Isso sobe o servidor WebSocket na porta `8080` e o app React em [http://localhos
 Para rodar separadamente:
 
 ```bash
+ngrok http 3000
 npm run server   # WebSocket em ws://localhost:8080
 npm start        # React app
 ```
