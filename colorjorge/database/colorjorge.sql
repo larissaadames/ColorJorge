@@ -9,3 +9,5 @@ CREATE TABLE usuarios (
     senha VARCHAR(255) NOT NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+SELECT * FROM usuarios;
