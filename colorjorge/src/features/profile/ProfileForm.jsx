@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 
-export default function ProfileForm() {
+export default function ProfileForm({ onSubmitProfile }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -11,8 +10,12 @@ export default function ProfileForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // aqui depois a gente tem que colocar jwt e salvar o perfil no banco de dados tb
-    // Aqui você pode disparar a ação para salvar o perfil via WebSocket ou Contexto
+    // Passa as informações preenchidas para a função que veio do componente pai (Profile.jsx)
+    if (onSubmitProfile) {
+      onSubmitProfile({ username, email, senha });
+    }
+
+    // Aqui você também poderá disparar a ação para salvar no banco de dados via WebSocket no futuro
     console.log("Perfil criado para o jogador:", username);
   };
 
@@ -38,7 +41,7 @@ export default function ProfileForm() {
       </label>
 
       <label>
-        email:
+        Email:
         <input 
           type="email" 
           value={email} 
@@ -49,7 +52,7 @@ export default function ProfileForm() {
       </label>
 
       <label>
-        senha:
+        Senha:
         <input 
           type="password" 
           value={senha} 
