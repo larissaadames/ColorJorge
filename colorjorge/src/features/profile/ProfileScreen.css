@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;600;700;800&display=swap');
+
+.perfil-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: #0f1623;
+}
+
+.perfil-card {
+  width: min(360px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  background: linear-gradient(160deg, rgba(87,89,100,0.45), rgba(22,26,38,0.85));
+  border: 1px solid rgba(180,193,230,0.14);
+  border-radius: 28px;
+  padding: 36px 28px 28px;
+}
+
+/* ── Avatar ── */
+.perfil-avatar-wrap {
+  margin-bottom: 20px;
+}
+
+.perfil-avatar-img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(32, 216, 232, 0.7);
+  box-shadow: 0 0 0 6px rgba(32, 216, 232, 0.12);
+}
+
+.perfil-avatar-placeholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(32,216,232,0.3), rgba(12,180,201,0.5));
+  border: 3px solid rgba(32, 216, 232, 0.7);
+  box-shadow: 0 0 0 6px rgba(32, 216, 232, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2rem;
+  color: #e8f7ff;
+  letter-spacing: 0.04em;
+}
+
+/* ── Nome e e-mail ── */
+.perfil-username {
+  margin: 0 0 6px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.45rem;
+  color: #f0f6ff;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.perfil-email {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.88rem;
+  color: #9ca6c6;
+  text-align: center;
+}
+
+/* ── Divider ── */
+.perfil-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(180,193,230,0.12);
+  margin: 24px 0 20px;
+}
+
+/* ── Linhas de info ── */
+.perfil-info-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  margin-bottom: 8px;
+}
+
+.perfil-info-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.82rem;
+  color: #9ca6c6;
+}
+
+.perfil-info-valor {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #dde6ff;
+}
+
+.perfil-id {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.95rem;
+  color: #20d8e8;
+  letter-spacing: 0.06em;
+}
+
+/* ── Botões ── */
+.perfil-acoes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.perfil-btn-acao {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  min-height: 46px;
+  line-height: 46px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(32,216,232,0.98), rgba(12,180,201,0.98));
+  color: #102036;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  border: none;
+}
+
+.perfil-btn-sair {
+  min-height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(220,70,90,0.4);
+  background: rgba(220,70,90,0.10);
+  color: #ffb8c4;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.perfil-btn-sair:hover {
+  background: rgba(220,70,90,0.22);
+}
+
+/* ── Estados de carregamento/erro ── */
+.perfil-carregando,
+.perfil-erro {
+  font-family: 'Manrope', sans-serif;
+  color: #9ca6c6;
+  text-align: center;
+}

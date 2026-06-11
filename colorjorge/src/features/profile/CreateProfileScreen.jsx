@@ -1,12 +1,10 @@
-import React from 'react';
+import GameShell from '../game/GameShell';
 import ProfileForm from './ProfileForm';
 
-export default function ProfileCreateScreen() {
+export default function CreateProfileScreen() {
   return (
-    <div className="screen-container">
-      <h2>Crie seu Perfil</h2>
-      
-      <ProfileForm /> 
-    </div>
+    <GameShell panelLabel="Criar perfil" showNav={false}>
+      <ProfileForm />
+    </GameShell>
   );
 }
